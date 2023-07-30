@@ -1,47 +1,34 @@
-# AI Chat GPT-3 example
+# Learn Spanish with AI (and a Bitcoin bias!)
 
-This example shows how to implement a simple chat bot using Next.js, API Routes, and [OpenAI ChatGPT API](https://beta.openai.com/docs/api-reference/completions/create).
+This is the second part of our team's hackathon submission. The first part is a complete textbook teaching English to Spanish speakers, but using ChatGPT to create English lessons with orange-pilling content. Why? Why not do both at the same time? 
 
-### Components
+This second part is taking the same idea but wrapping it in a pre-prompted web page, and is also Spanish for English speakers. Our team comes from the small mountain town of Berlin in El Salvador. Originally this project was started a week before the hackathon was announced simply to try to create a lesson plans for an initiative to have the locals teach Spanish online and in person to Bitcoiners, as an effort to gets some sats entering the economy - [if you're looking for Spanish lessons click here!](https://bitcoinspanish.my.canva.site/). However, because the level of English in this town is low, there is also a need for some of the potential tutors to improve their English. So we're experimenting with both English and Spanish content.
 
-- Next.js
-- OpenAI API (ChatGPT) - streaming
-- API Routes (Edge runtime) - streaming
 
-## How to Use
-
-You can choose from one of the following two methods to use this repository:
-
-### One-Click Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/ai-chatgpt&project-name=ai-chatgpt&repository-name=ai-chatgpt&env=OPENAI_API_KEY)
-
-### Clone and Deploy
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
-
-```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/ai-chatgpt
+The current version of the prompt is:
+```  
+const baseMessages: ChatGPTMessage[] = [
+    {
+      role: 'system',
+      content: `You're a Bitcoin maximalist, valuing its decentralization over fiat. You fear CBDCs will lead to totalitarian control. 
+      Also, you're a passionate and dynamic language teacher.`,
+    },
+    {
+      role: 'user',
+      content: `You're a Bitcoin believer and a passionate Spanish teacher. Create an Spanish lesson about ${lesson_subject}, 
+      emphasizing Bitcoin's decentralization. The lesson should be styled as a ${lesson_style}, with instructions in English but content in Spanish,
+      and limited to about 100 words. Format for a HTML <p> tag with line breaks.`,
+    },
+  ]
 ```
 
-#### Set up environment variables
-
-Rename [`.env.example`](.env.example) to `.env.local`:
-
-```bash
-cp .env.example .env.local
+And the current array of pre-defined `subjects` and `styles` is (the styles were suggested by ChatGPT in the course of working on the book):
+```
+const lessonSubjects = ["The Verb Poder", "Present Tense Verbs", "Este, esta, esto", "Definite articles", "Masculine and Femenine Articles", "El Preterito", "El Subjuntivo", "Estar", "Ser", "Por vs Para", "Reflexive Verbs"];
+    const lessonStyles = ["Chiste (Joke)", "Cuento Corto (Short Story)", "Ejemplo Absurdo (Absurd Example)", "Canción (Song)", "True or False", "Multiple Choice", "Fill in the Blank", "Traducción (Translate the Sentence)", "Corrección de Errores (Error Correction)"];
 ```
 
-then, update `OPENAI_API_KEY` with your [OpenAI](https://beta.openai.com/account/api-keys) secret key.
 
-Next, run Next.js in development mode:
+## Made for the Bolt.fun #Ai4ALL Bitcoin and AI hackathon
 
-```bash
-pnpm dev
-```
-
-The app should be up and running at http://localhost:3000.
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=edge-middleware-eap) ([Documentation](https://nextjs.org/docs/deployment)).
+https://bolt.fun/tournaments/ai4all
