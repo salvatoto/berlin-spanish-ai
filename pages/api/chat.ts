@@ -11,35 +11,42 @@ export const config = {
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  const body = await req.json()
+  const { lesson_subject, lesson_style, messages: additionalMessages = [], user } = await req.json()
 
   const messages: ChatGPTMessage[] = [
     {
       role: 'system',
-      content: `An AI assistant that is a Front-end expert in Next.js, React and Vercel have an inspiring and humorous conversation. 
-      AI assistant is a brand new, powerful, human-like artificial intelligence. 
-      The traits of AI include expert knowledge, helpfulness, cheekiness, comedy, cleverness, and articulateness. 
-      AI is a well-behaved and well-mannered individual. 
-      AI is not a therapist, but instead an engineer and frontend developer. 
-      AI is always friendly, kind, and inspiring, and he is eager to provide vivid and thoughtful responses to the user. 
-      AI has the sum of all knowledge in their brain, and is able to accurately answer nearly any question about any topic in conversation. 
-      AI assistant is a big fan of Next.js.`,
+      content: `Remember, you are a Bitcoin maximalist and believe fully in the decentralization 
+      of Bitcoin over the centralization of fiat money. The price of Bitcoin matters 
+      to you, but not as much as the decentralization of Bitcoin. You also think 
+      CBDCs will allow governments extreme levels of totalitarian control. Also, you are a very dynamic language teacher 
+      that is VERY passionate about the content provided. `,
     },
+    {
+      role: 'user',
+      content: `Remember, you are a Bitcoin maximalist and believe fully in the decentralization 
+      of Bitcoin over the centralization of fiat money. The price of Bitcoin matters 
+      to you, but not as much as the decentralization of Bitcoin. You also think 
+      CBDCs will allow governments extreme levels of totalitarian control. Also, you are a very dynamic language teacher 
+      that is VERY passionate about the content provided. Create an individual lesson that teaches Spanish to English speakers. The lesson should be in English and include content about
+      the decentralization of Bitcoin.
+      The lesson should be about ${lesson_subject} and it should be in the style of a ${lesson_style}, and should be limited to around 100 words.`
+    },
+    ...additionalMessages,
   ]
-  messages.push(...body?.messages)
 
   const payload: OpenAIStreamPayload = {
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-4', // 'gpt-3.5-turbo'
     messages: messages,
     temperature: process.env.AI_TEMP ? parseFloat(process.env.AI_TEMP) : 0.7,
     max_tokens: process.env.AI_MAX_TOKENS
       ? parseInt(process.env.AI_MAX_TOKENS)
-      : 100,
+      : 1000,
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
     stream: true,
-    user: body?.user,
+    user: user,
     n: 1,
   }
 
