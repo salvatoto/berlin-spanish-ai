@@ -28,6 +28,7 @@ const lessonSubjects = ["The Verb Poder", "Present Tense Verbs", "Este, esta, es
     const lessonStyles = ["Chiste (Joke)", "Cuento Corto (Short Story)", "Ejemplo Absurdo (Absurd Example)", "Canción (Song)", "True or False", "Multiple Choice", "Fill in the Blank", "Traducción (Translate the Sentence)", "Corrección de Errores (Error Correction)"];
 ```
 
+<br><br>
 
 ## Made for the Bolt.fun #Ai4ALL Bitcoin and AI hackathon
 
