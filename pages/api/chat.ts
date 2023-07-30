@@ -10,9 +10,9 @@ export const config = {
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  const { lesson_subject, lesson_style, messages: additionalMessages = [], user } = await req.json()
+  const { lesson_subject, lesson_style, messages: additionalMessages = [], goDeeper = false, user } = await req.json()
 
-  const messages: ChatGPTMessage[] = [
+  const baseMessages: ChatGPTMessage[] = [
     {
       role: 'system',
       content: `You're a Bitcoin maximalist, valuing its decentralization over fiat. You fear CBDCs will lead to totalitarian control. 
@@ -24,11 +24,17 @@ const handler = async (req: Request): Promise<Response> => {
       emphasizing Bitcoin's decentralization. The lesson should be styled as a ${lesson_style}, with instructions in English but content in Spanish,
       and limited to about 100 words. Format for a HTML <p> tag with line breaks.`,
     },
-    ...additionalMessages,
   ]
 
+  const deeperMessage: ChatGPTMessage = {
+    role: 'user',
+    content: `Go deeper into the lesson on ${lesson_subject}.`,
+  }
+
+  const messages: ChatGPTMessage[] = goDeeper ? [...additionalMessages, deeperMessage] : [...baseMessages, ...additionalMessages]
+
   const payload: OpenAIStreamPayload = {
-    model: 'gpt-4', // 'gpt-3.5-turbo'
+    model: 'gpt-3.5-turbo', //'gpt-4', // 
     messages: messages,
     temperature: process.env.AI_TEMP ? parseFloat(process.env.AI_TEMP) : 0.7,
     max_tokens: process.env.AI_MAX_TOKENS

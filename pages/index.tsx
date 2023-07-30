@@ -8,45 +8,46 @@ function Home() {
   const [style, setStyle] = useState("");
   const [messages, setMessages] = useState<ChatGPTMessage[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showGoDeeper, setShowGoDeeper] = useState(false);
+  const [goDeeperClicked, setGoDeeperClicked] = useState(false);
 
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleNewLessonClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setLoading(true);
-
-    // for now, choose random subject and style combination
+    setShowGoDeeper(false);
+    
     const lessonSubjects = ["The Verb Poder", "Present Tense Verbs", "Este, esta, esto", "Definite articles", "Masculine and Femenine Articles", "El Preterito", "El Subjuntivo", "Estar", "Ser", "Por vs Para", "Reflexive Verbs"];
-    // const lessonSubjects = ["Por vs Para"];
     const lessonStyles = ["Chiste (Joke)", "Cuento Corto (Short Story)", "Ejemplo Absurdo (Absurd Example)", "Canción (Song)", "True or False", "Multiple Choice", "Fill in the Blank", "Traducción (Translate the Sentence)", "Corrección de Errores (Error Correction)"];
   
     const chosenSubject = lessonSubjects[Math.floor(Math.random() * lessonSubjects.length)];
     const chosenStyle = lessonStyles[Math.floor(Math.random() * lessonStyles.length)];
-
-    // Set the subject and style immediately after they're randomly chosen
+  
     setSubject(chosenSubject);
     setStyle(chosenStyle);
-
+  
     const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ lesson_subject: chosenSubject, lesson_style: chosenStyle }),
+      body: JSON.stringify({ lesson_subject: chosenSubject, lesson_style: chosenStyle, messages, goDeeper: false }),
     });
+  
+    console.log("response of first call: ", response);
 
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-
-    // This data is a ReadableStream
+  
     const data = response.body;
     if (!data) {
       return;
     }
-
+  
     const reader = data.getReader();
     const decoder = new TextDecoder();
     let done = false;
-
+  
     let lastMessage = "";
 
     while (!done) {
@@ -64,6 +65,58 @@ function Home() {
       setLoading(false);
     }
 
+    setShowGoDeeper(true);
+
+    console.log("first call: ", lastMessage);
+  };
+  
+  const handleGoDeeperClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setLoading(true);
+  
+    console.log("in go deeper");
+
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ lesson_subject: subject, lesson_style: style, messages, goDeeper: true }),
+    });
+
+    console.log("response of go deeper: ", response);
+
+  
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+  
+    const data = response.body;
+    if (!data) {
+      return;
+    }
+  
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+  
+    let lastMessage = "";
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+
+      lastMessage = lastMessage + chunkValue;
+
+      setMessages([
+        ...messages,
+        { role: "assistant", content: lastMessage } as ChatGPTMessage,
+      ]);
+      console.log("lastMessage: ", lastMessage);
+
+      setLoading(false);
+    }
   };
 
   return (
@@ -90,9 +143,9 @@ function Home() {
               width: "30%",
               cursor: "pointer" 
             }} 
-            onClick={handleClick}>
+            onClick={handleNewLessonClick}>
               New Lesson
-          </button>
+          </button>          
         </div>
       </section>
 
@@ -104,7 +157,27 @@ function Home() {
       {messages.map((message, i) => (
        <p key={i} dangerouslySetInnerHTML={{__html: message.content}} />
       ))}
-      
+
+      {showGoDeeper && 
+        <div style={{display: "flex", justifyContent: "center"}}>
+          <button 
+            style={{ 
+              backgroundColor: "white", 
+              borderColor: "black", 
+              borderRadius: "12px", 
+              borderWidth: "2px", 
+              padding: "10px", 
+              fontSize: "20px",
+              fontWeight: "bold",
+              width: "30%",
+              cursor: "pointer",
+              marginTop: "20px" 
+            }} 
+            onClick={(e) => handleGoDeeperClick(e)}>
+              Go Deeper
+          </button>
+        </div>
+      }
     </Page>
   )
 }
