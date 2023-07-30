@@ -185,6 +185,12 @@ function Home() {
           </button>
         </div>
       }
+
+    <section className="flex flex-col gap-3" style={{justifyContent: "center", marginTop: "20px"}}>
+      <a href="https://github.com/salvatoto/berlin-spanish-ai/" target="_blank" rel="noreferrer" style={{textAlign: "center"}}>
+        View on GitHub
+      </a>
+    </section>
     </Page>
   )
 }
