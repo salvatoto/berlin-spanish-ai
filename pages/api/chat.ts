@@ -1,7 +1,6 @@
 import { type ChatGPTMessage } from '../../components/ChatLine'
 import { OpenAIStream, OpenAIStreamPayload } from '../../utils/OpenAIStream'
 
-// break the app if the API key is missing
 if (!process.env.OPENAI_API_KEY) {
   throw new Error('Missing Environment Variable OPENAI_API_KEY')
 }
@@ -16,21 +15,14 @@ const handler = async (req: Request): Promise<Response> => {
   const messages: ChatGPTMessage[] = [
     {
       role: 'system',
-      content: `Remember, you are a Bitcoin maximalist and believe fully in the decentralization 
-      of Bitcoin over the centralization of fiat money. The price of Bitcoin matters 
-      to you, but not as much as the decentralization of Bitcoin. You also think 
-      CBDCs will allow governments extreme levels of totalitarian control. Also, you are a very dynamic language teacher 
-      that is VERY passionate about the content provided. `,
+      content: `You're a Bitcoin maximalist, valuing its decentralization over fiat. You fear CBDCs will lead to totalitarian control. 
+      Also, you're a passionate and dynamic language teacher.`,
     },
     {
       role: 'user',
-      content: `Remember, you are a Bitcoin maximalist and believe fully in the decentralization 
-      of Bitcoin over the centralization of fiat money. The price of Bitcoin matters 
-      to you, but not as much as the decentralization of Bitcoin. You also think 
-      CBDCs will allow governments extreme levels of totalitarian control. Also, you are a very dynamic language teacher 
-      that is VERY passionate about the content provided. Create an individual lesson that teaches Spanish to English speakers. The lesson should be in English and include content about
-      the decentralization of Bitcoin.
-      The lesson should be about ${lesson_subject} and it should be in the style of a ${lesson_style}, and should be limited to around 100 words.`
+      content: `You're a Bitcoin believer and a passionate Spanish teacher. Create an Spanish lesson about ${lesson_subject}, 
+      emphasizing Bitcoin's decentralization. The lesson should be styled as a ${lesson_style}, with instructions in English but content in Spanish,
+      and limited to about 100 words. Format for a HTML <p> tag with line breaks.`,
     },
     ...additionalMessages,
   ]

@@ -14,8 +14,9 @@ function Home() {
     setLoading(true);
 
     // for now, choose random subject and style combination
-    const lessonSubjects = ["The verb poder", "Present tense verbs", "Este, esta, esto", "Definite articles", "Masculine and Femenine Articles"];
-    const lessonStyles = ["Chiste (Joke)", "Cuento Corto (Short Story)", "Ejemplo Absurdo (Absurd Example)","True of False", "Multiple Choice", "Fill in the Blank"];
+    const lessonSubjects = ["The Verb Poder", "Present Tense Verbs", "Este, esta, esto", "Definite articles", "Masculine and Femenine Articles", "El Preterito", "El Subjuntivo", "Estar", "Ser", "Por vs Para", "Reflexive Verbs"];
+    // const lessonSubjects = ["Por vs Para"];
+    const lessonStyles = ["Chiste (Joke)", "Cuento Corto (Short Story)", "Ejemplo Absurdo (Absurd Example)", "Canción (Song)", "True or False", "Multiple Choice", "Fill in the Blank", "Traducción (Translate the Sentence)", "Corrección de Errores (Error Correction)"];
   
     const chosenSubject = lessonSubjects[Math.floor(Math.random() * lessonSubjects.length)];
     const chosenStyle = lessonStyles[Math.floor(Math.random() * lessonStyles.length)];
@@ -96,12 +97,12 @@ function Home() {
       </section>
 
       <section className="flex flex-col gap-3">
-      <Text variant="h2" style={{color: "#808080"}}>Learn:<span style={{color: "black", paddingLeft: "14px"}}>{subject}</span></Text>
-      <Text variant="h2" style={{color: "#808080"}}>Style:<span style={{color: "black", paddingLeft: "14px"}}>{style}</span></Text>
+      <Text variant="h2" style={{color: "#808080"}}>Learn:<span style={{color: "#3CB371", paddingLeft: "14px"}}>{subject}</span></Text>
+      <Text variant="h2" style={{color: "#808080"}}>Style:<span style={{color: "#226640", paddingLeft: "14px"}}>{style}</span></Text>
       </section>
 
       {messages.map((message, i) => (
-        <p key={i}>{message.content}</p>
+       <p key={i} dangerouslySetInnerHTML={{__html: message.content}} />
       ))}
       
     </Page>
