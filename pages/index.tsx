@@ -9,7 +9,7 @@ function Home() {
   const [messages, setMessages] = useState<ChatGPTMessage[]>([]);
   const [loading, setLoading] = useState(false);
   const [showGoDeeper, setShowGoDeeper] = useState(false);
-  const [goDeeperClicked, setGoDeeperClicked] = useState(false);
+  const [requestOngoing, setRequestOngoing] = useState(false);
 
   const handleNewLessonClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -23,8 +23,9 @@ function Home() {
     const chosenStyle = lessonStyles[Math.floor(Math.random() * lessonStyles.length)];
   
     setSubject(chosenSubject);
-    setStyle(chosenStyle);
-  
+    setStyle(chosenStyle);  
+    setRequestOngoing(true);
+
     const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
@@ -65,6 +66,7 @@ function Home() {
       setLoading(false);
     }
 
+    setRequestOngoing(false);
     setShowGoDeeper(true);
 
     console.log("first call: ", lastMessage);
@@ -73,7 +75,8 @@ function Home() {
   const handleGoDeeperClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setLoading(true);
-  
+    setRequestOngoing(true);
+
     console.log("in go deeper");
 
     const response = await fetch("/api/chat", {
@@ -117,6 +120,8 @@ function Home() {
 
       setLoading(false);
     }
+
+    setRequestOngoing(false);
   };
 
   return (
@@ -143,6 +148,7 @@ function Home() {
               width: "30%",
               cursor: "pointer" 
             }} 
+            disabled={requestOngoing}
             onClick={handleNewLessonClick}>
               New Lesson
           </button>          
@@ -173,6 +179,7 @@ function Home() {
               cursor: "pointer",
               marginTop: "20px" 
             }} 
+            disabled={requestOngoing}
             onClick={(e) => handleGoDeeperClick(e)}>
               Go Deeper
           </button>
