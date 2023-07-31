@@ -1,8 +1,14 @@
 # Learn English and Spanish with AI (and a Bitcoin bias!)
 
 ## Table of Contents  
+### [Part 0 of 2 - Our final video pitch!](#part-0-of-2---our-final-video-pitch)
 ### [Part 1 of 2 - English Book for Latino Students](#part-1-of-2---english-book-for-latino-students)  
 ### [Part 2 of 2 - Spanish Website for English Speakers](#part-2-of-2---spanish-website-for-english-speakers)  
+
+<br>
+🤖🌋⚡🤖🌋⚡🤖🌋⚡
+
+# Part 0 of 2 - [Our final video pitch!](https://www.loom.com/share/706a721b427848a8901773d3245ce556?sid=2cbc16b8-ac4c-4353-a259-dfe416fe1328)
 
 <br>
 🤖🌋⚡🤖🌋⚡🤖🌋⚡
@@ -17,7 +23,7 @@ The team was initially more excited to create a textbook to teach English to El 
 It is still a more comfortable format that all ages of Salvadorians are used to. This was proven by the success of the Mi Primer Bitcoin textbook. However, as we all know learning something as complex as money and Bitcoin takes numerous approaches. We think that teaching Bitcoin from a primary angle of teaching English could be an approach that works for some students.
 
 ## 📖 The Textbook
-[The initial version of the textbook is here!](https://github.com/salvatoto/berlin-spanish-ai/blob/main/Hackathon%20-%20English%20Book.pdf) We have 5 chapters with 35 pages completed, with text created by ChatGPT and images created by Midjourney.
+[The initial version of the textbook is here!](https://drive.google.com/file/d/1iC2yy2pCsye1DKHkfciVHwF-zv2eJLlC/view) We have 5 chapters with 35 pages completed, with text created by ChatGPT and images created by Midjourney.
 
 Please review the PDF linked above, but here are also a few screenshots. As you can see the lessons are a mix of teaching English and money and Bitcoin:
 
