@@ -24,6 +24,7 @@ function Home() {
   
     setSubject(chosenSubject);
     setStyle(chosenStyle);  
+    setMessages([]);
     setRequestOngoing(true);
 
     const response = await fetch("/api/chat", {
@@ -34,8 +35,6 @@ function Home() {
       body: JSON.stringify({ lesson_subject: chosenSubject, lesson_style: chosenStyle, messages, goDeeper: false }),
     });
   
-    console.log("response of first call: ", response);
-
     if (!response.ok) {
       throw new Error(response.statusText);
     }
@@ -61,23 +60,18 @@ function Home() {
       setMessages([
         { role: "assistant", content: lastMessage } as ChatGPTMessage,
       ]);
-      console.log("lastMessage: ", lastMessage);
 
       setLoading(false);
     }
 
     setRequestOngoing(false);
     setShowGoDeeper(true);
-
-    console.log("first call: ", lastMessage);
   };
   
   const handleGoDeeperClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setLoading(true);
     setRequestOngoing(true);
-
-    console.log("in go deeper");
 
     const response = await fetch("/api/chat", {
       method: "POST",
@@ -86,9 +80,6 @@ function Home() {
       },
       body: JSON.stringify({ lesson_subject: subject, lesson_style: style, messages, goDeeper: true }),
     });
-
-    console.log("response of go deeper: ", response);
-
   
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -116,8 +107,6 @@ function Home() {
         ...messages,
         { role: "assistant", content: lastMessage } as ChatGPTMessage,
       ]);
-      console.log("lastMessage: ", lastMessage);
-
       setLoading(false);
     }
 

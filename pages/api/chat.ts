@@ -31,7 +31,7 @@ const handler = async (req: Request): Promise<Response> => {
     content: `Go deeper into the lesson on ${lesson_subject}.`,
   }
 
-  const messages: ChatGPTMessage[] = goDeeper ? [...additionalMessages, deeperMessage] : [...baseMessages, ...additionalMessages]
+  const messages: ChatGPTMessage[] = goDeeper ? [...additionalMessages, deeperMessage] : [...baseMessages]
 
   const payload: OpenAIStreamPayload = {
     model: 'gpt-3.5-turbo', //'gpt-4', // 
