@@ -21,11 +21,11 @@ It is still a more comfortable format that all ages of Salvadorians are used to.
 
 Please review the PDF linked above, but here are also a few screenshots. As you can see the lessons are a mix of teaching English and money and Bitcoin:
 
-<img width="638" alt="Screenshot 2023-07-31 at 5 36 33 AM" src="https://github.com/salvatoto/berlin-spanish-ai/assets/96950641/708e405e-dbf5-4272-ad71-64418ceef11c">
+<img width="638" alt="Screenshot 2023-07-31 at 5 36 33 AM" src="https://github.com/salvatoto/berlin-spanish-ai/assets/96950641/da8d78ec-a684-418c-97bd-9235f41f19a0">
 
-<img width="637" alt="Screenshot 2023-07-31 at 5 36 43 AM" src="https://github.com/salvatoto/berlin-spanish-ai/assets/96950641/c33548d6-030c-4967-818c-09ebbb6c9f42">
+<img width="637" alt="Screenshot 2023-07-31 at 5 36 43 AM" src="https://github.com/salvatoto/berlin-spanish-ai/assets/96950641/723bb1d5-e775-4cd6-8c61-97357c3eae3b">
 
-<img width="641" alt="Screenshot 2023-07-31 at 5 37 17 AM" src="https://github.com/salvatoto/berlin-spanish-ai/assets/96950641/ebb111c4-7b10-4967-a8d1-e11dab45b355">
+<img width="643" alt="Screenshot 2023-07-31 at 5 37 38 AM" src="https://github.com/salvatoto/berlin-spanish-ai/assets/96950641/ca1d188e-34cf-4b5b-a15d-a4f446b4c78d">
 
 
 ## 🤖 Prompts Used
@@ -50,7 +50,8 @@ The majority of to code in this repo the second part of our team's hackathon sub
 [A working version of the app is here!](https://berlin-spanish-ai.vercel.app/)
 
 ## ✨ A screenshot of the app:
-<img width="1301" alt="image" src="https://github.com/salvatoto/berlin-spanish-ai/assets/96950641/29f83082-7cc8-4b80-8a87-070353f76ccd">
+
+<img width="1179" alt="Screenshot 2023-07-31 at 7 06 56 AM" src="https://github.com/salvatoto/berlin-spanish-ai/assets/96950641/cab7d338-ba06-4e53-b88f-5a809899c33f">
 
 
 ## 🤖 The current version of the prompt is:
