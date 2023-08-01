@@ -23,7 +23,7 @@ The team was initially more excited to create a textbook to teach English to El 
 It is still a more comfortable format that all ages of Salvadorians are used to. This was proven by the success of the Mi Primer Bitcoin textbook. However, as we all know learning something as complex as money and Bitcoin takes numerous approaches. We think that teaching Bitcoin from a primary angle of teaching English could be an approach that works for some students.
 
 ## 📖 The Textbook
-[The initial version of the textbook is here!](https://drive.google.com/file/d/1iC2yy2pCsye1DKHkfciVHwF-zv2eJLlC/view) We have 5 chapters with 35 pages completed, with text created by ChatGPT and images created by Midjourney.
+[The initial version of the textbook is here!](https://drive.google.com/file/d/1tDMGPYW-DMo00SqkSQ5f_kRRoIG2W-WR/view) We have 5 chapters with 35 pages completed, with text created by ChatGPT and images created by Midjourney.
 
 Please review the PDF linked above, but here are also a few screenshots. As you can see the lessons are a mix of teaching English and money and Bitcoin:
 
